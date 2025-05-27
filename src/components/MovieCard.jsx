@@ -1,30 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
-  return (
-    <div className="movie-card">
-      <img src={InceptionPoster} alt={movie.title} />
-      <h3>{movie.title}</h3>
-      <p>{movie.description}</p>
-      <p>Жанр: {movie.genre}</p>
-      <div className="sessions">
-        {movie.sessions.map((session, index) => (
-          <div key={index} className="session">
-            {session.date} {session.time}
-          </div>
-        ))}
-      </div>
-      <Link to={`/booking/${movie.id}`} className="book-button">
-        Забронювати
-      </Link>
-    </div>
-  );
+    // Додамо перевірку на наявність зображення
+    try {
+        const posterPath = require(`../assets/images/${movie.poster}`).default;
+        return (
+            <div className="movie-card">
+                <img src={posterPath} alt={movie.title} />
+                <h3>{movie.title}</h3>
+                <p>{movie.description}</p>
+            </div>
+        );
+    } catch (error) {
+        console.error("Не вдалося завантажити зображення:", movie.poster);
+        return (
+            <div className="movie-card">
+                <div className="image-placeholder">Немає зображення</div>
+                <h3>{movie.title}</h3>
+                <p>{movie.description}</p>
+            </div>
+        );
+    }
 };
 
-MovieCard.propTypes = {
-  movie: PropTypes.object.isRequired
-};
-
-export default MovieCard; 
+export default MovieCard;
