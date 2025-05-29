@@ -9,6 +9,10 @@ const HomePage = () => {
     localStorage.setItem('movies', JSON.stringify(movies));
   }, []);
 
+  useEffect(() => {
+  localStorage.setItem('movies', JSON.stringify(movies));
+  }, []);
+
   const filteredMovies = movies.filter(movie =>
     movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
