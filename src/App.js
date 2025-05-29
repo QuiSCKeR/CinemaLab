@@ -1,15 +1,16 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Booking from './pages/Booking';
-import { movies } from './data/movies';
+import HomePage from './pages/HomePage';
+import BookingPage from './pages/BookingPage'; // Змінено тут
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <Router>
+      <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home movies={movies} />} />
-        <Route path="/booking/:movieId" element={<Booking movies={movies} />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/booking/:movieId" element={<BookingPage />} /> {/* І тут */}
       </Routes>
     </Router>
   );

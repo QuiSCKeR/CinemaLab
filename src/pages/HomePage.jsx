@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MovieList from '../components/MovieList';
-import { movies } from '../services/movies';
+import { movies } from '../data/movies';
 
 const HomePage = () => {
     const [searchTerm, setSearchTerm] = useState('');
