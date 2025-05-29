@@ -9,7 +9,14 @@ const Booking = () => {
 
   useEffect(() => {
     const storedMovies = JSON.parse(localStorage.getItem('movies')) || [];
-    const selected = storedMovies.find(m => m.id === id);
+
+    // !! ВАЖЛИВО: id може бути рядком, а movie.id — числом
+    const selected = storedMovies.find(m => String(m.id) === String(id));
+
+    if (!selected) {
+      console.warn('Фільм не знайдено за id:', id);
+    }
+
     setMovie(selected);
 
     const storedSeats = JSON.parse(localStorage.getItem(`seats_${id}`));

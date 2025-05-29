@@ -1,11 +1,12 @@
 import React from 'react';
-import defaultPoster from '../assets/images/default.jpg'; // Створіть це зображення
+import defaultPoster from '../assets/images/default.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
-  // Функція для отримання шляху до зображення
+  const navigate = useNavigate();
+
   const getPosterPath = () => {
     try {
-      // Спроба імпортувати зображення динамічно
       const image = require(`../assets/images/${movie.poster}`);
       return image.default || image;
     } catch (e) {
@@ -14,10 +15,14 @@ const MovieCard = ({ movie }) => {
     }
   };
 
+  const handleClick = () => {
+    navigate(`/booking/${movie.id}`);
+  };
+
   return (
-    <div className="movie-card">
-      <img 
-        src={getPosterPath()} 
+    <div className="movie-card" onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <img
+        src={getPosterPath()}
         alt={movie.title}
         onError={(e) => {
           e.target.src = defaultPoster;

@@ -1,20 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import BookingPage from './pages/BookingPage';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Booking from './pages/Booking';
+
 
 const App = () => {
-    return (
-        <Router>
-            <ToastContainer />
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/booking/:movieId" element={<BookingPage />} />
-            </Routes>
-        </Router>
-    );
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/booking/:id" element={<Booking />} />
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;
